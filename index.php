@@ -20,6 +20,15 @@ class Pessoa {
             echo get_class($this) . " " . $this->getNome() . " não tem idade suficiente para trocar de nome.\n";
         }
     }
+
+    public function fala() {
+        echo "Olá, sou " . $this->nome . " e tenho " . $this->idade . " anos.\n";
+    }
+    public function exibirInformacoes() {
+        echo "Nome: " . $this->getNome() . "\n";
+        echo "Idade: " . $this->idade . "\n";
+        $this->fala();
+    }
 }
 
 class Aluno extends Pessoa {
@@ -33,7 +42,14 @@ class Aluno extends Pessoa {
     public function fala(): void {
         echo "Aluno " . $this->getNome() . " está perguntando...\n";
     }
+    public function exibirInformacoes() {
+        echo "Nome: " . $this->getNome() . "\n";
+        echo "Idade: " . $this->idade . "\n";
+        echo "Matrícula: " . $this->matricula . "\n";
+        $this->fala();
+    }
 }
+
 
 class Professor extends Pessoa {
     public string $matricula;
@@ -48,41 +64,45 @@ class Professor extends Pessoa {
     public function fala(): void {
         echo "Professor " . $this->getNome() . " está dando aula sobre " . $this->disciplina . "\n";
     }
+    public function exibirInformacoes() {
+        echo "Nome: " . $this->getNome() . "\n";
+        echo "Idade: " . $this->idade . "\n";
+        echo "Matrícula: " . $this->matricula . "\n";
+        echo "Disciplina: " . $this->disciplina . "\n";
+        $this->fala();
+    }
 }
 
 // Exemplo de uso
 $aluno1 = new Aluno("Maria", 20, "12345");
 $aluno2 = new Aluno("João", 16, "54321");
 $professor = new Professor("Carlos", 35, "67890", "Matemática");
+$pessoa1 = new Pessoa("Carlos", 30);
 
-// Exibir informações
+
+
+// Exibindo informações
 echo "\nAluno 1:\n";
-echo "Nome: " . $aluno1->getNome() . "\n";
-echo "Idade: " . $aluno1->idade . "\n";
-echo "Matrícula: " . $aluno1->matricula . "\n";
-$aluno1->fala();
+$aluno1->exibirInformacoes();
 
 echo "\nAluno 2:\n";
-echo "Nome: " . $aluno2->getNome() . "\n";
-echo "Idade: " . $aluno2->idade . "\n";
-echo "Matrícula: " . $aluno2->matricula . "\n";
-$aluno2->fala();
+$aluno2->exibirInformacoes();
 
 echo "\nProfessor:\n";
-echo "Nome: " . $professor->getNome() . "\n";
-echo "Idade: " . $professor->idade . "\n";
-echo "Matrícula: " . $professor->matricula . "\n";
-echo "Disciplina: " . $professor->disciplina . "\n";
-$professor->fala();
+$professor->exibirInformacoes();
 
+echo "\nPessoa:\n";
+$pessoa1->exibirInformacoes();
 
-// Troca de nome
-echo "\nTentando trocar nome para Mariana...\n";
-$aluno1->trocarNome("Mariana"); // Deve funcionar
+echo "\nTentativa de troca de nome:\n";
+$pessoa1->trocarNome("André");
+echo "\nTentativa de troca de nome:\n";
+$aluno2->trocarNome("André");
 
-echo "Tentando trocar nome para João Pedro...\n";
-$aluno2->trocarNome("João Pedro"); // Não deve funcionar
+echo "\nResultado da tentativa:\n";
 
-echo "Tentando trocar nome para Carla...\n";
-$professor->trocarNome("Carla"); // Deve funcionar
+echo "\nPessoa:\n";
+$pessoa1->exibirInformacoes();
+echo "\nAluno 1:\n";
+$aluno1->exibirInformacoes();
 
