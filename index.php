@@ -77,8 +77,12 @@ $professor->fala();
 
 
 // Troca de nome
+echo "\nTentando trocar nome para Mariana...\n";
 $aluno1->trocarNome("Mariana"); // Deve funcionar
+
+echo "Tentando trocar nome para João Pedro...\n";
 $aluno2->trocarNome("João Pedro"); // Não deve funcionar
+
+echo "Tentando trocar nome para Carla...\n";
 $professor->trocarNome("Carla"); // Deve funcionar
 
-?>
